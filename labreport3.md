@@ -30,6 +30,7 @@ ArrayExamples:
 ![image](https://github.com/Quianey/cse15l-lab-report3/assets/147276821/7a39e9a0-2729-4218-9e0a-c648343ce1a0)
 
 **why the fix addresses the issue**
+
 In the buggy code, we assumed that there is only one lowest number. If we have multiple lowest number, we would fail to add the remaining lowest numbers. For example, in my tester, I include two 2's in the input. With the buggy method, we will ignore both 2's. But we should add a 2. 
 I fixed the code by adding every number in the list up and subtracting the smallest number, then calculating the average. This would make sure that I include more than one lowest numbers. 
 
