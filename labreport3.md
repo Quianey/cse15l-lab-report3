@@ -3,13 +3,16 @@
 ArrayExamples:
 
 **1. A failure-inducing input for the buggy program, as a JUnit test and any associated code**
+```
   @Test
   public void testAverageMultipleElement() {
     double[] input1 = { 2, 7, 8, 8, 5, 2, 6, 7, 9};
     assertEquals((7+8+8+5+2+6+7+9)/8.0, ArrayExamples.averageWithoutLowest(input1), 0.0001);
   }
+```
 
 **2. An input that doesn’t induce a failure, as a JUnit test and any associated code**
+```
   @Test
   public void testAverageFourElement() {
     double[] input1 = { 8, 8, 5, 9};
@@ -17,6 +20,8 @@ ArrayExamples:
   }
 
 }
+```
+
 **3. The symptom, as the output of running the tests**
 ![image](https://github.com/Quianey/cse15l-lab-report3/assets/147276821/48edd11e-dd90-4f77-9e80-300ad1fdcb56)
 
