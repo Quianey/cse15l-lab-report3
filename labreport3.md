@@ -34,3 +34,57 @@ In the buggy code, we assumed that there is only one lowest number. If we have m
 I fixed the code by adding every number in the list up and subtracting the smallest number, then calculating the average. This would make sure that I include more than one lowest numbers. 
 
 ## Part 2 - Researching Commands
+**reference : https://www.geeksforgeeks.org/grep-command-in-unixlinux/**
+ **grep -c**
+ directory:
+ ```
+$ grep -c "good" technical
+grep: technical: Is a directory
+0
+
+$ grep -c "good" technical/biomed/1468-6708-3-1.txt
+6
+```
+grep -c is going to find the number of lines that matches the given string/pattern. For directory, it's not useful. For a file,"1468-6708-3-1.txt" in  technical/biomed/ for example, it has 6 lines of "good". 
+
+ **grep -n**
+ ```
+$ grep -n "good" technical
+grep: technical: Is a directory
+
+$ grep -n "good" technical/biomed/1468-6708-3-1.txt
+83:          self-rated health (is your health excellent, very good,
+84:          good, fair, or poor?) (EVGFP) which was collected every 6
+96:          good, or good health (were 'healthy'). YHL ranges from 0
+97:          (for persons who were never in excellent, very good, or
+98:          good health) to 7 years (for persons who were healthy
+425:        EVGFP Is your health excellent, very good, good, fair or
+```
+grep -n is to show the line number of file with the line matched. For a directory, we can't use this command. For a file, "1468-6708-3-1.txt" in  technical/biomed/ for example, it lists 6 lines that include "good".
+
+**grep - o**
+```
+$ grep -o "good" technical
+grep: technical: Is a directory
+ 
+$ grep -o "good" technical/biomed/1468-6708-3-1.txt
+good
+good
+good
+good
+good
+good
+good
+good
+```
+grep -o displays only the matched string by using the -o option. The example above shows that there are 6 lines that include good. Now, we are lising good in these lines. Similarly, this command doesn't work for directory. 
+
+**grep -l**
+```$ grep -l "good" technical
+grep: technical: Is a directory
+
+     
+$ grep -l "good to know" technical/biomed/*
+
+```
+grep -l display the files that contains the given string/pattern. This command also doesn't work for directory. For files, we are examine all txt files in  technical/biomed/ whether they contain "good to know". Unfortunatly, none of them contains "good to know". Thus, the command returns nothing. 
