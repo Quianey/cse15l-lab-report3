@@ -36,7 +36,7 @@ I fixed the code by adding every number in the list up and subtracting the small
 
 ## Part 2 - Researching Commands
 **reference : https://www.geeksforgeeks.org/grep-command-in-unixlinux/**
- **grep -c**
+**grep -c**
  directory:
  ```
 $ grep -c "good" technical
