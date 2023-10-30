@@ -84,7 +84,10 @@ grep -o displays only the matched string by using the -o option. The example abo
 grep: technical: Is a directory
 
      
-$ grep -l "good to know" technical/biomed/*
+$ grep -l "good to" technical/biomed/*
+technical/biomed/1471-2105-2-8.txt
+technical/biomed/1471-2407-3-18.txt
 
 ```
-grep -l display the files that contains the given string/pattern. This command also doesn't work for directory. For files, we are examine all txt files in  technical/biomed/ whether they contain "good to know". Unfortunatly, none of them contains "good to know". Thus, the command returns nothing. 
+grep -l display the files that contains the given string/pattern. This command also doesn't work for directory. For files, we are examine all txt files in  technical/biomed/ whether they contain "good to". And we find that technical/biomed/1471-2105-2-8.txt and technical/biomed/1471-2407-3-18.txt have "good to". Thus, we have these two files listed in the terminal. 
+
