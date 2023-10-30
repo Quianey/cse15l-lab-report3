@@ -82,7 +82,8 @@ good
 grep -o displays only the matched string by using the -o option. The example above shows that there are 6 lines that include good. Now, we are lising good in these lines. Similarly, this command doesn't work for directory. 
 
 **grep -l**
-```$ grep -l "good" technical
+```
+$ grep -l "good" technical
 grep: technical: Is a directory
 
      
