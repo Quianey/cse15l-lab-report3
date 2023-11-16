@@ -79,64 +79,119 @@ I fixed the code by adding every number in the list up and subtracting the small
 
 ## Part 2 - Researching Commands
 
-**grep -c**
- directory:
+**find -type**
  ```
-$ grep -c "good" technical
-grep: technical: Is a directory
-0
+$ find technical -type d
+technical
+technical/biomed
+technical/911report
 
-$ grep -c "good" technical/biomed/1468-6708-3-1.txt
-6
+$ find technical/911report -type f
+technical/911report/preface.txt
+technical/911report/chapter-13.5.txt
+technical/911report/chapter-13.2.txt
+technical/911report/chapter-13.4.txt
+technical/911report/chapter-6.txt
+technical/911report/chapter-8.txt
+technical/911report/chapter-13.1.txt
+technical/911report/chapter-13.3.txt
+technical/911report/chapter-2.txt
+technical/911report/chapter-3.txt
+technical/911report/chapter-9.txt
+technical/911report/chapter-12.txt
+technical/911report/chapter-7.txt
+technical/911report/chapter-11.txt
+technical/911report/chapter-5.txt
+technical/911report/chapter-1.txt
+technical/911report/chapter-10.txt
 ```
-grep -c is going to find the number of lines that matches the given string/pattern. For directory, it's not useful. For a file,"1468-6708-3-1.txt" in  technical/biomed/ for example, it has 6 lines of "good". 
-**reference : https://www.geeksforgeeks.org/grep-command-in-unixlinux/**
+find -type is going to display files and directories. ```-type d``` is to display directories. ```-tpye f``` is to display files. 
+**reference : [https://www.geeksforgeeks.org/grep-command-in-unixlinux/](https://www.redhat.com/sysadmin/linux-find-command)**
 
- **grep -n**
+ **find -mtime -n**
  ```
-$ grep -n "good" technical
-grep: technical: Is a directory
-
-$ grep -n "good" technical/biomed/1468-6708-3-1.txt
-83:          self-rated health (is your health excellent, very good,
-84:          good, fair, or poor?) (EVGFP) which was collected every 6
-96:          good, or good health (were 'healthy'). YHL ranges from 0
-97:          (for persons who were never in excellent, very good, or
-98:          good health) to 7 years (for persons who were healthy
-425:        EVGFP Is your health excellent, very good, good, fair or
+$ find technical/911report -mtime -7
+technical/911report
+technical/911report/preface.txt
+technical/911report/chapter-13.5.txt
+technical/911report/chapter-13.2.txt
+technical/911report/chapter-13.4.txt
+technical/911report/chapter-6.txt
+technical/911report/chapter-8.txt
+technical/911report/chapter-13.1.txt
+technical/911report/chapter-13.3.txt
+technical/911report/chapter-2.txt
+technical/911report/chapter-3.txt
+technical/911report/chapter-9.txt
+technical/911report/chapter-12.txt
+technical/911report/chapter-7.txt
+technical/911report/chapter-11.txt
+technical/911report/chapter-5.txt
+technical/911report/chapter-1.txt
+technical/911report/chapter-10.txt
 ```
-grep -n is to show the line number of file with the line matched. For a directory, we can't use this command. For a file, "1468-6708-3-1.txt" in  technical/biomed/ for example, it lists 6 lines that include "good".
-**reference : https://www.geeksforgeeks.org/grep-command-in-unixlinux/**
+grep -n is to find a file or directory I modified last n days. In this example, I used n = 7, which means I modified last 1 week.
+**reference : [https://www.geeksforgeeks.org/grep-command-in-unixlinux/](https://opensource.com/article/21/9/linux-find-command)**
 
-**grep - o**
+**find -iname**
 ```
-$ grep -o "good" technical
-grep: technical: Is a directory
- 
-$ grep -o "good" technical/biomed/1468-6708-3-1.txt
-good
-good
-good
-good
-good
-good
-good
-good
-```
-grep -o displays only the matched string by using the -o option. The example above shows that there are 6 lines that include good. Now, we are lising good in these lines. Similarly, this command doesn't work for directory. 
-**reference : https://www.geeksforgeeks.org/grep-command-in-unixlinux/**
+$ find -iname "*chapter-12*"
+/home/docsearch/technical/911report/CHAPTER-12.txt
+/home/docsearch/technical/911report/chapter-12.txt
 
-**grep -l**
+$ find -iname "*report*"
+./technical/911report
+./technical/911REPORT
 ```
-$ grep -l "good" technical
-grep: technical: Is a directory
+I can broaden your search by making it case-insensitive with the -iname. When I use -iname, I can ingore upper case and lower case and find any file or directroy which match the name after -iname. 
+**reference : [https://www.geeksforgeeks.org/grep-command-in-unixlinux/](https://opensource.com/article/21/9/linux-find-command)**
 
-     
-$ grep -l "good to" technical/biomed/*
-technical/biomed/1471-2105-2-8.txt
-technical/biomed/1471-2407-3-18.txt
+**find -empty**
+```
+find technical -empty
+technical/biomed/1476-4598-2-28.txt
+technical/biomed/1476-4598-2-25.txt
+technical/biomed/1476-0711-2-3.txt
+technical/biomed/1475-9268-1-2.txt
+technical/biomed/1476-5918-1-2.txt
+technical/biomed/1475-925X-2-3.txt
+technical/biomed/1476-069X-2-9.txt
+technical/biomed/1475-925X-2-11.txt
+technical/biomed/1476-4598-2-20.txt
+technical/biomed/1475-4924-1-5.txt
+technical/biomed/1476-069X-2-4.txt
+technical/biomed/1475-9268-1-1.txt
+technical/biomed/1476-511X-1-2.txt
+technical/biomed/1475-4924-1-10.txt
+technical/biomed/1475-925X-2-12.txt
+technical/biomed/1476-069X-1-3.txt
+technical/biomed/1476-4598-2-24.txt
+technical/biomed/1476-4598-1-8.txt
+technical/biomed/1476-9433-1-2.txt
+technical/biomed/1476-4598-2-2.txt
+technical/biomed/1476-4598-1-5.txt
+technical/biomed/1475-2891-1-2.txt
+technical/biomed/1475-9276-1-3.txt
+technical/biomed/1476-069X-2-2.txt
+technical/biomed/1475-2891-2-1.txt
+technical/biomed/1475-925X-2-10.txt
+technical/biomed/1476-4598-2-22.txt
+technical/biomed/1476-4598-1-6.txt
+technical/biomed/1475-925X-2-1.txt
+technical/biomed/1476-511X-2-3.txt
+technical/biomed/1476-0711-2-7.txt
+technical/biomed/1476-511X-2-2.txt
+technical/biomed/1476-069X-2-7.txt
+technical/biomed/1476-4598-2-3.txt
+technical/biomed/1476-072X-2-4.txt
+technical/biomed/1476-4598-2-1.txt
+technical/biomed/1476-4598-1-3.txt
+technical/biomed/1476-072X-2-3.txt
+technical/biomed/1475-925X-2-6.txt
+technical/911report/CHAPTER-12.txt
+technical/911REPORT
 
 ```
-grep -l display the files that contains the given string/pattern. This command also doesn't work for directory. For files, we are examine all txt files in  technical/biomed/ whether they contain "good to". And we find that technical/biomed/1471-2105-2-8.txt and technical/biomed/1471-2407-3-18.txt have "good to". Thus, we have these two files listed in the terminal. 
-**reference : https://www.geeksforgeeks.org/grep-command-in-unixlinux/**
+find -empty finds all empty folders and files in the entered directory or sub-directories. In the example, I have many emtpy txt files and one empty folder--911REPORT. 
+**reference : [https://www.geeksforgeeks.org/grep-command-in-unixlinux/](https://www.geeksforgeeks.org/find-command-in-linux-with-examples/)**
 
