@@ -27,6 +27,7 @@ ArrayExamples:
 
 
 **4. The bug, as the before-and-after code change required to fix it** 
+
 **before**
 ```
   // Averages the numbers in the array (takes the mean), but leaves out the
