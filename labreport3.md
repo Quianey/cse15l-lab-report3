@@ -27,7 +27,49 @@ ArrayExamples:
 
 
 **4. The bug, as the before-and-after code change required to fix it** 
-![image](https://github.com/Quianey/cse15l-lab-report3/assets/147276821/7a39e9a0-2729-4218-9e0a-c648343ce1a0)
+**before**
+```
+  // Averages the numbers in the array (takes the mean), but leaves out the
+  // lowest number when calculating. Returns 0 if there are no elements or just
+  // 1 element in the array
+  static double averageWithoutLowest(double[] arr) {
+    if(arr.length < 2) { return 0.0; }
+    double lowest = arr[0];
+    for(double num: arr) {
+      if(num < lowest) { lowest = num; }
+    }
+    double sum = 0;
+    for(double num: arr) {
+      if (num != lowest) { sum+= num; }
+    }
+    return sum / (arr.length - 1);
+  }
+
+
+}
+```
+***after***
+```
+  // Averages the numbers in the array (takes the mean), but leaves out the
+  // lowest number when calculating. Returns 0 if there are no elements or just
+  // 1 element in the array
+  static double averageWithoutLowest(double[] arr) {
+    if(arr.length < 2) { return 0.0; }
+    double lowest = arr[0];
+    for(double num: arr) {
+      if(num < lowest) { lowest = num; }
+    }
+    double sum = 0;
+    for(double num: arr) {
+      sum += sum; 
+    }
+    sum -= lowest; 
+    return sum / (arr.length - 1);
+  }
+
+
+}
+```
 
 **why the fix addresses the issue**
 
